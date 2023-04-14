@@ -1,3 +1,5 @@
+import math
+
 class Item():
   def __init__(self, x, _children = ()):
     self.value = float(x)
@@ -81,6 +83,15 @@ class Item():
     out._backward = _backward
     return out
 
+  def log(self, base=None):
+    out = Item(math.log(self.value) if base is None else math.log(self.value, base), (self,))
+
+    def _backward():
+        self.grad += out.grad / (self.value * (math.log(base) if base is not None else 1))
+        
+    out._backward = _backward
+    return out
+  
   # Boolean Comparison Operators (not used for backprop)
   def __lt__(self, other):
     if not isinstance(other, Item):

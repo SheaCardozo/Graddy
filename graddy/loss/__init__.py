@@ -1,0 +1,1 @@
+from graddy.loss.crossentropy import CrossEntropyLoss
