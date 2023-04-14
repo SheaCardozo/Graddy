@@ -70,6 +70,7 @@ class Item():
       
       def _backward():
         self.grad += (other.value * self.value**(other.value-1)) * out.grad
+        other.grad += (self.value ** other.value) * math.log(self.value) * out.grad
 
       out._backward = _backward
       return out 

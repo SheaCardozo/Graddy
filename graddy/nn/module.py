@@ -15,7 +15,7 @@ class Module(ABC):
     return {k: v.grad for k, v in self.parameters.items()}
   
   def zero_grad(self):
-      for k, v in self.parameters:
+      for k, v in self.parameters.items():
         v.zero_grad()
 
   def update_parameters(self, update):
