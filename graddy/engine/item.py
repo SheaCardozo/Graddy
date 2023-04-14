@@ -8,13 +8,13 @@ class Item():
   def __repr__(self) -> str:
     return f"Item(Value={self.value}, Grad={self.grad})"
 
-  def clear_grad(self):
+  def zero_grad(self):
     self.grad = 0.
     for child in self._children:
-      child.clear_grad()
+      child.zero_grad()
 
   def backward(self):
-    self.clear_grad()
+    self.zero_grad()
 
     graph = []
     visited = set()
@@ -71,6 +71,15 @@ class Item():
 
       out._backward = _backward
       return out 
+     
+  def relu(self):
+    out = Item(0 if self.value < 0 else self.value, (self,))
+
+    def _backward():
+        self.grad += (out.value > 0) * out.grad
+        
+    out._backward = _backward
+    return out
 
   # Boolean Comparison Operators (not used for backprop)
   def __lt__(self, other):

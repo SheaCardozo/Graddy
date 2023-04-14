@@ -1,4 +1,4 @@
-
+from graddy.engine.item import Item
 
 class Tensor():
   def __init__(self, data):
@@ -66,6 +66,17 @@ class Tensor():
 
     return Tensor(new_data)
 
+  def __abs__(self):
+    new_data = [abs(v) for v in self.data]
+    return Tensor(new_data)
+  
+  def relu(self):
+    new_data = [v.relu() for v in self.data]
+    return Tensor(new_data)
+
+  def zero_grad(self):
+      for v in self.data:
+        v.zero_grad()
 
   # Implemented using the above
   def __neg__(self):
@@ -73,10 +84,6 @@ class Tensor():
 
   def __pos__(self):
     return self
-
-  def __abs__(self):
-    new_data = [abs(v) for v in self.data]
-    return Tensor(new_data)
 
   def __radd__(self, other):
       return self + other
