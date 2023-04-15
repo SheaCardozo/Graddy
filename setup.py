@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='Graddy',
+setup(name='graddy',
       version='0.0.1',
       description='Graddy ML Framework',
       author='Shea Cardozo',
