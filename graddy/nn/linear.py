@@ -4,11 +4,14 @@ from graddy.nn.module import Module
 from graddy.engine.tensor import Tensor
 
 class Linear(Module):
-  def __init__(self, in_dim, out_dim):
+  def __init__(self, in_dim, out_dim, bias = True):
     super().__init__()
     self.in_dim, self.out_dim = in_dim, out_dim
     self.parameters["ff"] = Tensor([[random.gauss(mu=0, sigma=1) for i in range(self.out_dim)] for j in range(self.in_dim)])
-    self.parameters["bias"] = Tensor([random.gauss(mu=0, sigma=1) for i in range(self.out_dim)])
+    self._bias = bias
+
+    if bias:
+      self.parameters["bias"] = Tensor([random.gauss(mu=0, sigma=1) for i in range(self.out_dim)])
 
   def _apply_bias(self, x):
     if isinstance(x[0], Tensor):
@@ -18,5 +21,8 @@ class Linear(Module):
 
   def __call__(self, x):
     x = x @ self.parameters["ff"]
-    x = self._apply_bias(x)
+    
+    if self._bias:
+      x = self._apply_bias(x)
+
     return x
