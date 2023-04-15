@@ -34,6 +34,10 @@ class Item():
     for node in reversed(graph):
       node._backward()
 
+  def detach(self):
+    self._children = set()
+    return self
+
   # Backprop Operations
   def __add__(self, other):
       if not isinstance(other, Item):

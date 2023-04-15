@@ -19,8 +19,9 @@ class Module(ABC):
         v.zero_grad()
 
   def update_parameters(self, update):
-    for k, v in update:
+    for k, v in update.items():
       if isinstance(self.parameters[k], Tensor):
         self.parameters[k] += v
+        self.parameters[k].detach()
       else:
         self.parameters[k].update_parameters(v)

@@ -37,6 +37,11 @@ class Tensor():
     new_data = [v.grad for v in self.data]
     return Tensor(new_data) 
 
+  def detach(self):
+    for v in self.data:
+      v.detach()
+    return self
+
   # Elementwise Operations
   def __add__(self, other):
     if isinstance(other, Tensor):
