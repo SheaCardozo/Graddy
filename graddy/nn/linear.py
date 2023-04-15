@@ -12,7 +12,7 @@ class Linear(Module):
 
   def _apply_bias(self, x):
     if isinstance(x[0], Tensor):
-      return Tensor([self._apply_bias[xt] for xt in x])
+      return Tensor([self._apply_bias(xt) for xt in x])
     else:
       return x + self.parameters["bias"]
 
