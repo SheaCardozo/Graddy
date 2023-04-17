@@ -15,7 +15,7 @@ class Flatten(Module):
       if len(x) == 1:
         return self._flatten(x[0])
       else:
-        return [self._flatten(xt) for xt in x]
+        return Tensor([self._flatten(xt) for xt in x])
 
 
   def __call__(self, x):
