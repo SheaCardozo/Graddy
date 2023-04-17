@@ -13,7 +13,7 @@ class Tensor():
       self.shape.append(len(probe))
       probe = probe[0]
 
-    if isinstance(data[0], (list, Tensor)):
+    if len(data) == 0 or isinstance(data[0], (list, Tensor)):
       self.data = [d if isinstance(d, Tensor) else Tensor(d) for d in data]
     else:
       self.data = [d if isinstance(d, Item) else Item(d) for d in data]
