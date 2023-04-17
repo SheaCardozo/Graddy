@@ -92,19 +92,18 @@ class Conv2D(Module):
               continue
 
             slc = self._get_slice(sample, h, w)
-            print(slc.shape)
             conv_out = sum(sum(sum(kernel * slc)))
 
             if self._bias:
               conv_out += self.parameters["bias"][channel]
-
-            print(conv_out)
 
             new_height.append(conv_out)
             
           new_channel.append(new_height)
 
         sample_channels.append(new_channel)
+
+      print(Tensor(sample_channels).shape)
 
       output.append(sample_channels)
 
