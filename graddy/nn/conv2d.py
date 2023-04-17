@@ -84,11 +84,14 @@ class Conv2D(Module):
         new_channel = []
         
         for h in range(0, x.shape[2], self._stride[0]):
-          new_height = []
 
+          if (h + self.kernel_size[0]) > x.shape[2]:
+            continue 
+          
+          new_height = []
           for w in range(0, x.shape[3], self._stride[1]):
 
-            if (h + self.kernel_size[0]) > x.shape[2] or (w + self.kernel_size[1]) > x.shape[3]:
+            if (w + self.kernel_size[1]) > x.shape[3]:
               continue
 
             slc = self._get_slice(sample, h, w)
