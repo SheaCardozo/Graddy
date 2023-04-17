@@ -106,9 +106,6 @@ class Conv2D(Module):
 
         sample_channels.append(new_channel)
 
-        print(Tensor(sample_channels).shape)
-
       output.append(sample_channels)
-      print(Tensor(output).shape)
 
     return Tensor(output)
