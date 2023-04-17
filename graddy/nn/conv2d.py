@@ -100,7 +100,6 @@ class Conv2D(Module):
             new_height.append(conv_out)
 
           new_channel.append(new_height)
-          print(Tensor(new_channel).shape)
 
         sample_channels.append(new_channel)
 
