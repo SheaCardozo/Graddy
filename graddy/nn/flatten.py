@@ -1,5 +1,3 @@
-import random
-
 from graddy.nn.module import Module
 from graddy.engine.tensor import Tensor
 
