@@ -9,7 +9,7 @@ class Tensor():
 
     probe = data
 
-    while isinstance(probe, (list, Tensor)):
+    while isinstance(probe, (list, Tensor)) and len(probe) > 0:
       self.shape.append(len(probe))
       probe = probe[0]
 

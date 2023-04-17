@@ -98,8 +98,10 @@ class Conv2D(Module):
               conv_out += self.parameters["bias"][channel]
 
             new_height.append(conv_out)
-            
+            print(Tensor(new_channel).shape)
+
           new_channel.append(new_height)
+        print(Tensor(new_channel).shape)
 
         sample_channels.append(new_channel)
 
