@@ -34,13 +34,13 @@ class Conv2D(Module):
     for xc in x:
       new_c = []
       for p in range(self._padding[0]):
-        new_c.append([0 for ph in range(2*self._padding[1] + x.shape[3])])
+        new_c.append([0 for ph in range(2*self._padding[1] + x.shape[2])])
 
       for xw in xc:
         new_c.append([0 for ph in range(self._padding[1])] + [xh for xh in xw] + [0 for ph in range(self._padding[1])])
 
       for p in range(self._padding[0]):
-        new_c.append([0 for ph in range(2*self._padding[1] + x.shape[3])])
+        new_c.append([0 for ph in range(2*self._padding[1] + x.shape[2])])
 
       new_x.append(new_c)
 
@@ -87,7 +87,7 @@ class Conv2D(Module):
 
           if (h + self.kernel_size[0]) > x.shape[2]:
             continue 
-          
+
           new_height = []
           for w in range(0, x.shape[3], self._stride[1]):
 
